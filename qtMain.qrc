@@ -1,0 +1,21 @@
+<RCC>
+   <qresource prefix="/images">
+      <file alias="aa.png">resource/aa.png</file>
+      <file alias="ak.png">resource/ak.png</file>
+      <file alias="aq.png">resource/aq.png</file>
+      <file alias="aj.png">resource/aj.png</file>
+      <file alias="a10.png">resource/a10.png</file>
+      <file alias="a9.png">resource/a9.png</file>
+      <file alias="a8.png">resource/a8.png</file>
+      <file alias="a7.png">resource/a7.png</file>
+      <file alias="a6.png">resource/a6.png</file>
+      <file alias="a5.png">resource/a5.png</file>
+      <file alias="a4.png">resource/a4.png</file>
+      <file alias="a3.png">resource/a3.png</file>
+      <file alias="a2.png">resource/a2.png</file>
+      <file alias="startBG.png">resource/startBG.png</file>
+      <file alias="startButton.png">resource/startButton.png</file>
+      <file alias="gameBG.png">resource/gameBG.png</file>
+      <file alias="endBG.png">resource/endBG.png</file>
+   </qresource>
+</RCC>
