@@ -3,6 +3,7 @@
 #include "card.h"
 #include <QLayout>
 #include <QStackedLayout>
+#include <QStackedWidget>
 
 class uiHandle : public QObject
 {
@@ -42,6 +43,10 @@ class uiHandle : public QObject
         QVBoxLayout *gameLayout = new QVBoxLayout(&gameWindow);
         QHBoxLayout *buttonLayout = new QHBoxLayout();
         QHBoxLayout *cardLayout = new QHBoxLayout();
+        QHBoxLayout *dealerCardLayout = new QHBoxLayout();
+        QHBoxLayout *playerCardLayout = new QHBoxLayout();
+
+        QStackedWidget* cardWidgets[9];
 
         //Card vector.
         std::vector<Card*> dealCards;

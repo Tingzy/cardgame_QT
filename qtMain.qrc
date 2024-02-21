@@ -17,5 +17,6 @@
       <file alias="startButton.png">resource/startButton.png</file>
       <file alias="gameBG.png">resource/gameBG.png</file>
       <file alias="endBG.png">resource/endBG.png</file>
+      <file alias="backofcard.png">resource/backofcard.png</file>
    </qresource>
 </RCC>
