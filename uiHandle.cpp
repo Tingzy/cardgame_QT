@@ -160,3 +160,24 @@ void uiHandle::countNewCard()
     }
     emit cardCountChanged(cardImage, cardName);
 }
+
+uiHandle::~uiHandle()
+{
+    delete baseWindow;
+    delete baseLayout;
+    delete stackedLayout;
+
+    delete gameLayout;
+    delete buttonLayout;
+    delete cardLayout;
+    delete dealerCardLayout;
+    delete playerCardLayout;
+
+    for (int i=0; i<9; i++)
+    {
+        delete cardWidgets[i];
+    }
+
+    dealCards.clear();
+
+}

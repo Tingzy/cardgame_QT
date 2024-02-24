@@ -10,3 +10,8 @@ QPushButton* myButton::getButton()
 {
     return &qButton;
 }
+
+myButton::~myButton()
+{
+    delete &qButton;
+}

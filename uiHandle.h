@@ -19,7 +19,8 @@ class uiHandle : public QObject
         //Set background and main buttons for end window.
         void createEndWindow();
 
-        
+        ~uiHandle();
+
     private:
         //Base window is the application window. There is 1 base window for 1 app.
         QWidget *baseWindow = new QWidget;

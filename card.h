@@ -8,6 +8,7 @@ Q_OBJECT
 public:
     explicit Card(const std::string& m_cardImage, const std::string& m_cardName);
     QWidget* getCardWidget();
+    ~Card();
 
     private:
         QWidget* cardWidget = new QWidget;

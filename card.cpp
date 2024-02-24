@@ -44,3 +44,8 @@ QWidget* Card::getCardWidget()
 {
     return cardWidget;
 }
+
+Card::~Card()
+{
+    delete cardWidget;
+}
