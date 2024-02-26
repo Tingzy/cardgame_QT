@@ -2,8 +2,65 @@
 #include <QApplication>
 #include <QMessageBox>
 #include <unistd.h>
+#include <stdlib.h>
 #include "window.h"
 #include "button.h"
+
+std::map<int, std::string> cardVal
+{
+    {1, "a2"}, // 2 spade.
+    {2, "b2"}, // 2 club.
+    {3, "c2"}, // 2 diamond.
+    {4, "d2"}, // 2 heart.
+    {5, "a3"}, // 3 spade.
+    {6, "b3"}, // 3 club.
+    {7, "c3"}, // 3 diamond.
+    {8, "d3"}, // 3 heart.
+    {9, "a4"}, // 4 spade.
+    {10, "b4"}, // 4 club.
+    {11, "c4"}, // 4 diamond.
+    {12, "d4"}, // 4 heart.
+    {13, "a5"}, // 5 spade.
+    {14, "b5"}, // 5 club.
+    {15, "c5"}, // 5 diamond.
+    {16, "d5"}, // 5 heart.
+    {17, "a6"}, // 6 spade.
+    {18, "b6"}, // 6 club.
+    {19, "c6"}, // 6 diamond.
+    {20, "d6"}, // 6 heart.
+    {21, "a7"}, // 7 spade.
+    {22, "b7"}, // 7 club.
+    {23, "c7"}, // 7 diamond.
+    {24, "d7"}, // 7 heart.
+    {25, "a8"}, // 8 spade.
+    {26, "b8"}, // 8 club.
+    {27, "c8"}, // 8 diamond.
+    {28, "d8"}, // 8 heart.
+    {29, "a9"}, // 9 spade.
+    {30, "b9"}, // 9 club.
+    {31, "c9"}, // 9 diamond.
+    {32, "d9"}, // 9 heart.
+    {33, "a10"}, // 10 spade.
+    {34, "b10"}, // 10 club.
+    {35, "c10"}, // 10 diamond.
+    {36, "d10"}, // 10 heart.
+    {37, "aj"}, // J spade.
+    {38, "bj"}, // J club.
+    {39, "cj"}, // J diamond.
+    {40, "dj"}, // J heart.
+    {41, "aq"}, // Q spade.
+    {42, "bq"}, // Q club.
+    {43, "cq"}, // Q diamond.
+    {44, "dq"}, // Q heart.
+    {45, "ak"}, // K spade.
+    {46, "bk"}, // K club.
+    {47, "ck"}, // K diamond.
+    {48, "dk"}, // K heart.
+    {49, "aa"}, // A spade.
+    {50, "ba"}, // A club.
+    {51, "ca"}, // A diamond.
+    {52, "da"} // A heart.
+};
 
 uiHandle::uiHandle()
 {
@@ -86,7 +143,6 @@ void uiHandle::createGameWindow()
 
     QPushButton *dealButton = new QPushButton("Deal");
     dealButton->setFixedSize(80, 30);
-    //connect(dealButton, &QPushButton::released, this, [this]{ createCard("aa", "card1"); });
     connect(dealButton, &QPushButton::released, this, &uiHandle::countNewCard);
     connect(this, &uiHandle::cardCountChanged, this, &uiHandle::createCard);
 
@@ -148,36 +204,33 @@ void uiHandle::removeCards()
 void uiHandle::countNewCard()
 {
     std::string cardImage;
+    int cardNumber;
     ++cardCount;
+    srand((unsigned int)time(NULL));
+    cardNumber = rand()% 52 + 1;
+    while (dealerCard.count(cardNumber) || playerCard.count(cardNumber) || sharedCard.count(cardNumber))
+    {
+        cardNumber = rand()% 52 + 1;
+    }
+    printf("card number %d\n", cardNumber);
     std::string cardName = "card" + std::to_string(cardCount);
     if (cardCount == 1 || cardCount == 2)
     {
         cardImage = "backofcard";
+        dealerCard.insert({cardNumber, cardImage});
     }
     else
     {
-        cardImage = "aa";
+        cardImage = cardVal[cardNumber];
+        if (cardCount == 3 || cardCount == 4)
+        {
+            playerCard.insert({cardNumber, cardImage});
+        }
+        else
+        {
+            sharedCard.insert({cardNumber, cardImage});
+        }
     }
     emit cardCountChanged(cardImage, cardName);
 }
 
-uiHandle::~uiHandle()
-{
-    delete baseWindow;
-    delete baseLayout;
-    delete stackedLayout;
-
-    delete gameLayout;
-    delete buttonLayout;
-    delete cardLayout;
-    delete dealerCardLayout;
-    delete playerCardLayout;
-
-    for (int i=0; i<9; i++)
-    {
-        delete cardWidgets[i];
-    }
-
-    dealCards.clear();
-
-}

@@ -19,8 +19,6 @@ class uiHandle : public QObject
         //Set background and main buttons for end window.
         void createEndWindow();
 
-        ~uiHandle();
-
     private:
         //Base window is the application window. There is 1 base window for 1 app.
         QWidget *baseWindow = new QWidget;
@@ -51,6 +49,10 @@ class uiHandle : public QObject
 
         //Card vector.
         std::vector<Card*> dealCards;
+
+        std::map<int, std::string> dealerCard;
+        std::map<int, std::string> playerCard;
+        std::map<int, std::string> sharedCard;
 
     private slots:
         //Slot to be connected to some signals, to show startWindow, in-game window or end window.
